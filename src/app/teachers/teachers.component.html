@@ -1,0 +1,52 @@
+<div class="teachers-container">
+    <h2>Teachers List</h2>
+    <p>Total Teachers: {{ teachers.length }}</p>
+
+    <form [formGroup]="teacherForm" (ngSubmit)="onSubmit()" class="add-teacher-form">
+        <input type="text" formControlName="teacher_id" placeholder="Teacher ID" required />
+        <input type="text" formControlName="first_name" placeholder="First Name" required />
+        <input type="text" formControlName="last_name" placeholder="Last Name" required />
+        <input type="date" formControlName="date_of_birth" required />
+        
+        <select formControlName="gender" required>
+          <option value="" disabled selected>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <input type="email" formControlName="email" placeholder="Email" required />
+        <input type="text" formControlName="phone_number" placeholder="Phone Number" required />
+        <input type="text" formControlName="address" placeholder="Address" required />
+        <input type="text" formControlName="subject" placeholder="Subject" required />
+
+        <button type="submit" [disabled]="teacherForm.invalid">Add Teacher</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Teacher ID</th>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Subject</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let teacher of teachers">
+                <td>{{ teacher.teacher_id }}</td>
+                <td>{{ teacher.first_name }} {{ teacher.last_name }}</td>
+                <td>{{ teacher.date_of_birth }}</td>
+                <td>{{ teacher.gender }}</td>
+                <td>{{ teacher.email }}</td>
+                <td>{{ teacher.phone_number }}</td>
+                <td>{{ teacher.address }}</td>
+                <td>{{ teacher.subject }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
